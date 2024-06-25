@@ -1,17 +1,28 @@
 export const addToCart = (cart, item) => {
   const existing = cart.find(p => p.id === item.id);
+  let newCart = [];
   if (existing) {
-    return cart.map(p => (p.id === item.id ? { ...p, quantity: p.quantity + 1 } : p));
+    newCart = cart.map(p => (p.id === item.id ? { ...p, quantity: p.quantity + 1 } : p));
+  } else {
+    newCart = [...cart, { ...item, quantity: 1 }];
   }
-  return [...cart, { ...item, quantity: 1 }];
+  localStorage.setItem('cart', JSON.stringify(newCart));
+  return newCart;
 };
 
 export const removeFromCart = (cart, item) => {
   const existing = cart.find(p => p.id === item.id);
+  let newCart = [];
   if (existing.quantity === 1) {
-    return cart.filter(p => p.id !== item.id);
+    newCart = cart.filter(p => p.id !== item.id);
+  } else {
+    newCart = cart.map(p => (p.id === item.id ? { ...p, quantity: p.quantity - 1 } : p));
   }
-  if (existing) {
-    return cart.map(p => (p.id === item.id ? { ...p, quantity: p.quantity - 1 } : p));
-  }
+  localStorage.setItem('cart', JSON.stringify(newCart));
+  return newCart;
+};
+
+export const resetCart = () => {
+  localStorage.removeItem('cart');
+  return [];
 };

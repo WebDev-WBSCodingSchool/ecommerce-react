@@ -6,7 +6,7 @@ const ProductCard = ({ cart, product, setCart }) => {
 
   return (
     <div className='card bg-base-100 shadow-xl'>
-      <figure className='h-48 p-3'>
+      <figure className='bg-white h-48 p-3'>
         <img src={product.image} alt='Shoes' className='object-contain h-full w-full' />
       </figure>
       <div className='card-body'>

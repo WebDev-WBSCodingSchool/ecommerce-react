@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom';
 import { NavBar } from '@/components';
 
 const MainLayout = () => {
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState(JSON.parse(localStorage.getItem('cart')) || []);
 
   return (
     <>
