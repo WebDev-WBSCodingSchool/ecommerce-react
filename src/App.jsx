@@ -5,13 +5,14 @@ import {
   createRoutesFromElements
 } from 'react-router-dom';
 import { MainLayout } from '@/layouts';
-import { Cart, Home } from '@/pages';
+import { Cart, Category, Home } from '@/pages';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route element={<MainLayout />}>
       <Route index element={<Home />} />
-      <Route path='/cart' element={<Cart />} />
+      <Route path='category/:name' element={<Category />} />
+      <Route path='cart' element={<Cart />} />
     </Route>
   )
 );
