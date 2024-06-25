@@ -1,28 +1,7 @@
 import { Link } from 'react-router-dom';
+import { addToCart, removeFromCart } from '@/utils/cartUtils';
 
 const ProductCard = ({ cart, product, setCart }) => {
-  const addToCart = () => {
-    setCart(prev => {
-      const existing = prev.find(p => p.id === product.id);
-      if (existing) {
-        return prev.map(p => (p.id === product.id ? { ...p, quantity: p.quantity + 1 } : p));
-      }
-      return [...prev, { ...product, quantity: 1 }];
-    });
-  };
-
-  const removeFromCart = () => {
-    setCart(prev => {
-      const existing = prev.find(p => p.id === product.id);
-      if (existing.quantity === 1) {
-        return prev.filter(p => p.id !== product.id);
-      }
-      if (existing) {
-        return prev.map(p => (p.id === product.id ? { ...p, quantity: p.quantity - 1 } : p));
-      }
-    });
-  };
-
   const productInCart = cart.find(p => p.id === product.id);
 
   return (
@@ -42,16 +21,25 @@ const ProductCard = ({ cart, product, setCart }) => {
           </Link>
           {productInCart ? (
             <>
-              <button className='btn btn-primary' onClick={removeFromCart}>
+              <button
+                className='btn btn-primary'
+                onClick={() => setCart(prev => removeFromCart(prev, product))}
+              >
                 -
               </button>
               <span> {productInCart.quantity}</span>
-              <button className='btn btn-primary' onClick={addToCart}>
+              <button
+                className='btn btn-primary'
+                onClick={() => setCart(prev => addToCart(prev, product))}
+              >
                 +
               </button>
             </>
           ) : (
-            <button className='btn btn-primary' onClick={addToCart}>
+            <button
+              className='btn btn-primary'
+              onClick={() => setCart(prev => addToCart(prev, product))}
+            >
               Add to cart
             </button>
           )}
