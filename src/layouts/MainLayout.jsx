@@ -1,12 +1,15 @@
+import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import { NavBar } from '@/components';
 
 const MainLayout = () => {
+  const [cart, setCart] = useState([]);
+
   return (
     <>
       <NavBar />
       <main className='container mx-auto'>
-        <Outlet />
+        <Outlet context={{ cart, setCart }} />
       </main>
     </>
   );

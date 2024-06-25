@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
 import { Alert, CategoryLinks, ProductCard, ProductCardSkeleton } from '@/components';
+import { useOutletContext } from 'react-router-dom';
 
 const Home = () => {
+  const { cart, setCart } = useOutletContext();
   const [loading, setLoading] = useState(true);
   const [products, setProducts] = useState([]);
 
@@ -24,7 +26,7 @@ const Home = () => {
     if (loading)
       return Array.from({ length: 20 }).map((_, i) => <ProductCardSkeleton key={i} product={{}} />);
     if (!products.length) return <Alert message='No products were found' type='warning' />;
-    return products.map(p => <ProductCard key={p.id} product={p} />);
+    return products.map(p => <ProductCard key={p.id} cart={cart} product={p} setCart={setCart} />);
   };
 
   return (
