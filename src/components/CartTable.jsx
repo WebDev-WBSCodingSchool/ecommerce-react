@@ -8,6 +8,10 @@ const CartTable = ({ cart, setCart }) => {
       currency: 'EUR'
     }).format(price);
 
+  const paymentProcess = () => {
+    alert('Payment process is not implemented yet. But coming soon!');
+  };
+
   return (
     <div className='overflow-x-auto'>
       <table className='table'>
@@ -71,7 +75,10 @@ const CartTable = ({ cart, setCart }) => {
               </button>
             </th>
             <th>
-              Total: {priceFormat(cart.reduce((acc, item) => acc + item.quantity * item.price, 0))}
+              <button className='btn btn-success' onClick={paymentProcess}>
+                Checkout:{' '}
+                {priceFormat(cart.reduce((acc, item) => acc + item.quantity * item.price, 0))}
+              </button>
             </th>
           </tr>
         </tfoot>
