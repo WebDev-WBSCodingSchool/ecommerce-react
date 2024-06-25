@@ -7,7 +7,7 @@ const MainLayout = () => {
 
   return (
     <>
-      <NavBar />
+      <NavBar cart={cart} />
       <main className='container mx-auto'>
         <Outlet context={{ cart, setCart }} />
       </main>
