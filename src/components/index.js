@@ -4,7 +4,9 @@ import CategoryLinks from './CategoryLinks';
 import CategoriesSkeleton from './CategoriesSkeleton';
 import NavBar from './NavBar';
 import ProductCard from './ProductCard';
-import ProductCardSkeleton from './ProductCardSkeleton';
+import ProductList from './ProductList';
+import ProductListSkeleton from './ProductListSkeleton';
+import RouteErrorElement from './RouteErrorElement';
 
 export {
   Alert,
@@ -13,5 +15,7 @@ export {
   CategoriesSkeleton,
   NavBar,
   ProductCard,
-  ProductCardSkeleton
+  ProductList,
+  ProductListSkeleton,
+  RouteErrorElement
 };
